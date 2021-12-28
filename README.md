@@ -17,12 +17,6 @@ This application is created to accomplish computer vision course final project.
 
 Step-by-step to run this program.
 
-#### Use the real-time mask detector
-
-*Coming soon*
-
-#### Train your own mask detector model
-
 *Coming soon*
 
 

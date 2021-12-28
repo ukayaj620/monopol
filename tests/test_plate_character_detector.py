@@ -1,3 +1,4 @@
+import cv2
 import unittest
 from matplotlib import pyplot as plt
 
@@ -20,7 +21,7 @@ class TestPlateCharacterDetector(unittest.TestCase):
         show_plots((6, 2), ncols=2, nrows=1, images=images)
 
     def test_detect_character(self):
-        file_path = "./data/example/indonesia_nopol_5.JPG"
+        file_path = "./data/example/indonesia_nopol_3.JPG"
         self.plate_character_detector.load_image(file_path)
         (character_rois, crop_characters) = self.plate_character_detector.detect_characters()
         plt.figure(figsize=(5, 3))
@@ -28,6 +29,11 @@ class TestPlateCharacterDetector(unittest.TestCase):
         plt.imshow(character_rois)
 
         images = [create_image_dict(char, "", cmap="gray")
+                  for char in crop_characters]
+        show_plots((len(crop_characters), 2), ncols=len(
+            crop_characters), nrows=1, images=images)
+
+        images = [create_image_dict(cv2.resize(char, (80, 80)), "", cmap="gray")
                   for char in crop_characters]
         show_plots((len(crop_characters), 2), ncols=len(
             crop_characters), nrows=1, images=images)

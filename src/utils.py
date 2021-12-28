@@ -10,9 +10,9 @@ def create_image_dict(image, label, cmap):
     })
 
 
-def show_plots(figure_size, ncols, nrows, images=[]):
+def show_plots(figure_size, ncols, nrows, images=[], font_size=14):
     figure = plt.figure(figsize=figure_size)
-    plt.rcParams.update({"font.size": 14})
+    plt.rcParams.update({"font.size": font_size})
     grid = gridspec.GridSpec(ncols=ncols, nrows=nrows, figure=figure)
 
     for i in range(len(images)):

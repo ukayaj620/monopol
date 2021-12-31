@@ -9,8 +9,15 @@ class PlateCharacterDetector:
         self.digit_width = 32
         self.digit_height = 64
 
-    def load_image(self, file_path):
-        self.image_bgr = cv2.resize(cv2.imread(file_path), (240, 80))
+    def load_image(self, file_path=None, image=None):
+        if file_path is None and image is None:
+            raise Exception("No image provided")
+
+        if file_path is not None:
+            self.image_bgr = cv2.resize(cv2.cvtColor(cv2.imread(file_path), cv2.COLOR_BGR2RGB), (240, 80))
+        else:
+            self.image_bgr = cv2.resize(cv2.cvtColor(image, cv2.COLOR_BGR2RGB), (240, 80))
+
         self.image_gray = cv2.cvtColor(self.image_bgr, cv2.COLOR_BGR2GRAY)
 
     def detect_characters(self):

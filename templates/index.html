@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %} | Check In {% endblock %} {% block
+body %}
+<div class="d-flex flex-column align-items-center">
+  <form
+    class="mt-4 w-100"
+    style="max-width: 512px"
+    action="{{ url_for('index') }}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="mb-2">
+      <label class="form-label fw-semibold h5 mb-3" for="input-photo">
+        Upload License Plate
+      </label>
+      <input
+        onchange="readImage(this)"
+        type="file"
+        class="form-control"
+        id="input-photo"
+        name="photo"
+        required
+      />
+    </div>
+    <div class="my-4 w-100">
+      <img id="license-plate" class="w-100" />
+    </div>
+    <div class="mb-2 mt-2 w-100">
+      <button class="btn btn-dark w-100 fw-semibold rounded-lg" type="submit">
+        Process
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %} {% block js %}
+<script>
+  function readImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var width = $("#license-plate").attr("src", e.target.result).width();
+        $("#license-plate").attr("src", e.target.result).height(parseInt(width / 3));
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+{% endblock %}

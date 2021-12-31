@@ -48,9 +48,12 @@ plate_character_recognizer.load_classes_label()
 characters_image = []
 
 for character in crop_characters:
-    predicted_character, confidence_rate = plate_character_recognizer.predict(character)
-    character_label = "{}, {}%".format(predicted_character, round(confidence_rate * 100, 2))
-    characters_image.append(create_image_dict(character, character_label, cmap="gray"))
+    predicted_character, confidence_rate = plate_character_recognizer.predict(
+        character)
+    character_label = "{}, {}%".format(
+        predicted_character, round(confidence_rate * 100, 2))
+    characters_image.append(create_image_dict(
+        character, character_label, cmap="gray"))
 
-show_plots((9, 4), ncols=len(characters_image), nrows=1, images=characters_image, font_size=9)
-
+show_plots((9, 4), ncols=len(characters_image), nrows=1,
+           images=characters_image, font_size=9)

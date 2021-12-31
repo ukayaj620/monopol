@@ -25,7 +25,7 @@ class PlateCharacterDetector:
             char_size_ratio = h / w
             if 1.1 <= char_size_ratio <= 6:
                 char_height_ratio = h / self.image_bgr.shape[0]
-                if char_height_ratio >= 0.35:
+                if 0.35 <= char_height_ratio <= 0.8:
                     cv2.rectangle(character_rois, (x, y),
                                   (x + w, y + h), (0, 255, 0), 2)
 
@@ -51,7 +51,7 @@ class PlateCharacterDetector:
 
     def _preprocessing(self):
         image_blur = self.apply_gaussian_blur(
-            image_gray=self.image_gray, kernel_size=(7, 7))
+            image_gray=self.image_gray, kernel_size=(5, 5))
         image_bw = self.apply_thresholding(image_gray=image_blur)
         image_erode = self.apply_erosion(
             image_bw=image_bw, kernel=self.create_kernel(3))

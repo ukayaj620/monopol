@@ -22,7 +22,7 @@ body %}
     >
       <h3 class="fw-bold mb-3">License Plate Detection</h3>
       <div class="drop-area">
-        <span class="fake-upload-button mb-1">Browse image</span>
+        <span class="upload-button mb-1">Browse image</span>
         <span id="uploaded-file-name" style="color: #2563eb"
           >Or drop the file here</span
         >
@@ -68,13 +68,8 @@ body %}
 </div>
 {% endblock %} {% block js %}
 <script>
-  console.log($("#extracted-plate-characters").attr("src"));
   function readImage(input) {
     if (input.files && input.files[0]) {
-      const fileName = input.files[0].name;
-
-      $("#uploaded-file-name").text(fileName);
-
       $("#license-photo-upload-form").trigger("submit");
     }
   }

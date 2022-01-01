@@ -1,10 +1,19 @@
 {% extends "base.html" %} {% block title %} | Check In {% endblock %} {% block
 body %}
 <div
-  class="d-flex flex-column align-items-center"
-  style="height: calc(100vh - 164px)"
+  class="d-flex flex-column align-items-center py-5"
 >
-  <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100" style="max-width: 512px">
+  <div
+    class="
+      d-flex
+      flex-column
+      justify-content-center
+      align-items-center
+      w-100
+      h-100
+    "
+    style="max-width: 512px"
+  >
     {% if raw_image is not none %}
     <h5 class="fw-semibold h5">Uploaded License Plate</h5>
     <div class="my-2 w-100">
@@ -31,6 +40,49 @@ body %}
       <h1 class="text-center mt-2 font-bold">{{ classified_text }}</h1>
     </div>
     {% endif %}
+    <form
+      id="license-photo-upload-form"
+      class="
+        mt-4
+        w-100
+        d-flex
+        flex-column
+        justify-content-center
+        align-items-center
+      "
+      action="{{ url_for('index') }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div
+        class="
+          d-flex
+          flex-column
+          justify-content-center
+          align-items-center
+          position-relative
+        "
+        style="width: 16rem; height: 3rem"
+      >
+        <span class="upload-button mb-1">Upload New Image</span>
+        <input
+          onchange="readImage(this)"
+          type="file"
+          class="upload-input"
+          id="license-photo"
+          name="license-photo"
+          required
+        />
+      </div>
+    </form>
   </div>
 </div>
+{% endblock %} {% block js %}
+<script>
+  function readImage(input) {
+    if (input.files && input.files[0]) {
+      $("#license-photo-upload-form").trigger("submit");
+    }
+  }
+</script>
 {% endblock %}

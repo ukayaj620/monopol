@@ -18,6 +18,8 @@ class PlateCharacterDetector:
         else:
             self.image_bgr = cv2.resize(cv2.cvtColor(image, cv2.COLOR_BGR2RGB), (240, 80))
 
+        self.image_bgr = self.image_bgr[:-20, :]
+
         self.image_gray = cv2.cvtColor(self.image_bgr, cv2.COLOR_BGR2GRAY)
 
     def detect_characters(self):

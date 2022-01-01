@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %} | Check In {% endblock %} {% block
+body %}
+<div
+  class="d-flex flex-column align-items-center"
+  style="height: calc(100vh - 164px)"
+>
+  <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100" style="max-width: 512px">
+    {% if raw_image is not none %}
+    <h5 class="fw-semibold h5">Uploaded License Plate</h5>
+    <div class="my-2 w-100">
+      <img
+        id="extracted-plate-characters"
+        src="data:image/jpeg;base64,{{ raw_image }}"
+        class="w-100"
+      />
+    </div>
+    {% endif %} {% if preprocessed_image is not none %}
+    <h5 class="fw-semibold h5 mt-4">
+      Detected and Recognized License Plate Character
+    </h5>
+    <div class="my-2 w-100">
+      <img
+        id="extracted-plate-characters"
+        src="data:image/jpeg;base64,{{ preprocessed_image }}"
+        class="w-100"
+      />
+    </div>
+    {% endif %} {% if classified_text is not none %}
+    <h5 class="fw-semibold h5 mt-4">Extracted and Classified Character</h5>
+    <div class="my-2 w-100">
+      <h1 class="text-center mt-2 font-bold">{{ classified_text }}</h1>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,36 +1,39 @@
 {% extends "base.html" %} {% block title %} | Check In {% endblock %} {% block
 body %}
-<div class="d-flex flex-column align-items-center">
-  <div
-    class="d-flex flex-column align-items-center w-100"
-    style="max-width: 512px"
-  >
+<div
+  class="d-flex flex-column align-items-center"
+  style="height: calc(100vh - 164px)"
+>
+  <div class="d-flex flex-column w-100 h-100" style="max-width: 512px">
     <form
-      class="mt-4 w-100"
+      id="license-photo-upload-form"
+      class="
+        mt-4
+        w-100
+        h-100
+        d-flex
+        flex-column
+        justify-content-center
+        align-items-center
+      "
       action="{{ url_for('index') }}"
       method="POST"
       enctype="multipart/form-data"
     >
-      <div class="mb-2">
-        <label class="form-label fw-semibold h5 mb-3" for="license-photo">
-          Upload License Plate
-        </label>
+      <h3 class="fw-bold mb-3">License Plate Detection</h3>
+      <div class="drop-area">
+        <span class="fake-upload-button mb-1">Browse image</span>
+        <span id="uploaded-file-name" style="color: #2563eb"
+          >Or drop the file here</span
+        >
         <input
           onchange="readImage(this)"
           type="file"
-          class="form-control"
+          class="upload-input"
           id="license-photo"
           name="license-photo"
           required
         />
-      </div>
-      <div class="my-2 w-100">
-        <img id="license-plate" class="w-100" />
-      </div>
-      <div class="mb-2 mt-2 w-100">
-        <button class="btn btn-dark w-100 fw-semibold rounded-lg" type="submit">
-          Process
-        </button>
       </div>
     </form>
     <div class="mt-4 w-100">
@@ -68,16 +71,11 @@ body %}
   console.log($("#extracted-plate-characters").attr("src"));
   function readImage(input) {
     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+      const fileName = input.files[0].name;
 
-      reader.onload = function (e) {
-        var width = $("#license-plate").attr("src", e.target.result).width();
-        $("#license-plate")
-          .attr("src", e.target.result)
-          .height(parseInt(width / 3));
-      };
+      $("#uploaded-file-name").text(fileName);
 
-      reader.readAsDataURL(input.files[0]);
+      $("#license-photo-upload-form").trigger("submit");
     }
   }
 </script>

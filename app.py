@@ -54,7 +54,7 @@ def index():
         _, buffer = cv2.imencode('.jpg', img=image)
         raw_image = base64.b64encode(buffer).decode("UTF-8")
 
-        return render_template('index.html', raw_image=raw_image, preprocessed_image=base64_crop_characters_plot,
+        return render_template('result.html', raw_image=raw_image, preprocessed_image=base64_crop_characters_plot,
                                classified_text=characters)
 
     return render_template('index.html', raw_image=None, preprocessed_image=None, classified_text=None)

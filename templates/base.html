@@ -20,16 +20,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}" />
     <title>Monopol</title>
   </head>
   <body
-    class="h-100"
-    style="font-family: 'Inter', sans-serif; color: #1f2937 !important"
+    style="font-family: 'Inter', sans-serif; color: #1f2937 !important; height: 100vh;"
   >
-    <nav class="navbar navbar-light bg-light px-4">
+    <nav class="navbar px-4" style="background-color: #eff6ff">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('index') }}">
-          <h1 class="fw-bold" style="color: #1f2937">Monopol</h1>
+          <h1 class="fw-bold" style="color: #2563eb">Monopol</h1>
         </a>
       </div>
     </nav>
@@ -45,17 +45,17 @@
         px-4
         py-2
         fixed-bottom
-        bg-light
       "
+      style="background-color: #eff6ff"
     >
       <div class="ms-sm-4 col d-flex align-items-center">
-        <h4 class="fw-bold m-0 me-3 text-dark">Monopol</h4>
+        <h4 class="fw-bold m-0 me-3" style="color: #2563eb">Monopol</h4>
         <a
           class="me-3"
           target="_blank"
           href="https://github.com/ukayaj620/monopol"
         >
-          <i class="fs-4 bi-github" style="color: #1f2937"></i>
+          <i class="fs-4 bi-github" style="color: #2563eb"></i>
         </a>
       </div>
       <div class="col text-center">

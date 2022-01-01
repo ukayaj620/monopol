@@ -1,0 +1,39 @@
+.drop-area {
+  width: 32rem;
+  height: 12rem;
+  background-color: #eff6ff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 0.1875rem dashed #60A5FA;
+}
+
+.upload-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+.fake-upload-button {
+  background-color: #2563eb;
+  border-radius: 0.5rem;
+  width: 16rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fafafa;
+  font-weight: 700;
+  font-size: 1.125rem;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+}

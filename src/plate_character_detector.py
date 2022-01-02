@@ -61,7 +61,7 @@ class PlateCharacterDetector:
     def _preprocessing(self):
         image_blur = self.apply_gaussian_blur(
             image_gray=self.image_gray, kernel_size=(5, 5))
-        image_bw = self.apply_thresholding(image_gray=image_blur)
+        image_bw = self.apply_thresholding(image_gray=image_blur, threshold_value=180)
         image_erode = self.apply_erosion(
             image_bw=image_bw, kernel=self.create_kernel(3))
 
@@ -73,8 +73,8 @@ class PlateCharacterDetector:
     def apply_gaussian_blur(self, image_gray, kernel_size):
         return cv2.GaussianBlur(image_gray, kernel_size, 0)
 
-    def apply_thresholding(self, image_gray):
-        return cv2.threshold(image_gray, 180, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    def apply_thresholding(self, image_gray, threshold_value=127):
+        return cv2.threshold(image_gray, threshold_value, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
     def apply_erosion(self, image_bw, kernel):
         return cv2.morphologyEx(image_bw, cv2.MORPH_ERODE, kernel)

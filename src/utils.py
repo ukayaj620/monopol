@@ -6,7 +6,7 @@ import io
 import cv2
 
 
-def create_image_dict(image, label, cmap):
+def create_image_dict(image, label, cmap=None):
     return dict({
         "image": image,
         "label": label,
